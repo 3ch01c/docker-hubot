@@ -26,8 +26,8 @@ EXPOSE ${hubot_port}
 RUN yo hubot --adapter="${hubot_adapter}" --name="${hubot_name}" --owner="${hubot_owner}" --description="${hubot_description}" --defaults
 
 # Add custom scripts
-COPY --chown=hubot external-scripts.json .
-COPY --chown=hubot scripts .
+COPY --chown=100 external-scripts.json .
+COPY --chown=100 scripts .
 
 # Install the things
 RUN npm i
