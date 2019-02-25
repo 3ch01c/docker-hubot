@@ -37,8 +37,8 @@ RUN npm i -S $(tr -d '\n' < external-scripts.json | sed -E 's/("|,|\[|\]|\n)/ /g
 RUN npm i -S ${hubot_packages}
 
 # Add MFA support to Mattermost adapter
-ADD src/client.js node_modules/mattermost-client/src/
-ADD src/matteruser.js node_modules/hubot-matteruser/src/
+COPY --chown=hubot src/client.js node_modules/mattermost-client/src/
+COPY --chown=hubot src/matteruser.js node_modules/hubot-matteruser/src/
 
 # Run hubot
 ENTRYPOINT ["sh", "-c", "bin/hubot", "-a", "$HUBOT_ADAPTER"]
