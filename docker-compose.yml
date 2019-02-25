@@ -5,11 +5,11 @@ services:
     build:
       context: .
       args:
-        - hubot_name="Hubot"
-        - hubot_owner="Bot Wrangler <bw@example.com>"
-        - hubot_description="Delightfully aware robutt"
-        - hubot_adapter="slack"
-        - hubot_packages=""
+        - hubot_name=Hubot
+        - hubot_owner=Bot Wrangler <bw@example.com>
+        - hubot_description=Delightfully aware robutt
+        - hubot_adapter=slack
+        - hubot_packages
         - hubot_port=8080
     ports:
       - "8080:8080"
