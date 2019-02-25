@@ -1,16 +1,16 @@
-version: "2"
+version: "3"
 services:
   hubot:
     image: 3ch01c/hubot:mattermost
     build:
       context: .
       args:
-        hubot_name: "Hubot"
-        hubot_owner: "Bot Wrangler <bw@example.com>"
-        hubot_description: "Delightfully aware robutt"
-        hubot_adapter: "matteruser"
-        hubot_packages: ""
-        hubot_port: 8080
+        - hubot_name="Hubot"
+        - hubot_owner="Bot Wrangler <bw@example.com>"
+        - hubot_description="Delightfully aware robutt"
+        - hubot_adapter="matteruser"
+        - hubot_packages=""
+        - hubot_port=8080
     ports:
       - "8080:8080"
     environment:
