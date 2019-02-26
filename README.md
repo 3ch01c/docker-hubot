@@ -59,12 +59,12 @@ docker build -t hubot:mattermost --build-arg hubot_adapter="hubot-matteruser" .
 ```
 
 For the curious, here's what the rest of those build variables in [`docker-compose.yml`](docker-compose.yml) do:
-* `hubot_name`: Some chat adapters use this name for the bot. I think the shell adapter does. Slack and Mattermost do not.
+* `hubot_name`: The name the bot responds to.
 * `hubot_owner`: I'm not sure how this gets used, but feel free to change it to your info if you want.
 * `hubot_description`: Again, not sure where this gets used
 * `hubot_adapter`: The name of the chat adapter you want to use, without the `hubot-` prefix.
 * `hubot_packages`: A space-separated list of additional NPM packages to install. I use this when I'm developing scripts to install their dependencies.
-* `hubot_port`: The port for Hubot's web server. Some scripts like [hubot-help](https://github.com/hubotio/hubot-help) also reference this. Keep in mind that since this is running in a container, you'll need to make sure the host exposes the same port is the same on the host or else scripts that use t
+* `hubot_port`: The port for Hubot's web server. Some scripts like [hubot-help](https://github.com/hubotio/hubot-help) also reference this. Keep in mind that since this is running in a container, you'll need to make sure `hubot_port` is directly mapped (e.g., `docker run -p $hubot_port:$hubot_port`)
 
 <a name="env"></a>
 #### Runtime environment variables
