@@ -22,4 +22,6 @@ services:
     image: redis:alpine
     command: redis-server --appendonly yes
     volumes:
-      - ./data:/data
+      - data:/data
+volumes:
+  data:
