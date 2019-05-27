@@ -11,6 +11,7 @@ ARG hubot_user="hubot"
 ARG hubot_home="hubot"
 
 # Update, upgrade, and install stuff
+RUN apk add oath-toolkit-oathtool -U --no-cache --repository http://dl-cdn.alpinelinux.org/alpine/edge/testing
 RUN npm i -g coffeescript yo generator-hubot
 
 # Create hubot user & switch over to our hubot build environment
@@ -37,8 +38,9 @@ RUN npm i -S $(tr -d '\n' < external-scripts.json | sed -E 's/("|,|\[|\]|\n)/ /g
 RUN npm i -S ${hubot_packages}
 
 # Add MFA support to Mattermost adapter
-COPY --chown=100 src/client.js node_modules/mattermost-client/src/
-COPY --chown=100 src/matteruser.js node_modules/hubot-matteruser/src/
+COPY --chown=100 src/node_modules node_modules
+
+COPY --chown=100 entrypoint.sh .
 
 # Run hubot
-ENTRYPOINT ["sh", "-c", "bin/hubot", "-a", "$HUBOT_ADAPTER"]
+ENTRYPOINT ["sh",  "-c", "./entrypoint.sh"]
