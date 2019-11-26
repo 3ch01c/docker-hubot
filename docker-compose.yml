@@ -5,12 +5,14 @@ services:
     build:
       context: .
       args:
-        - hubot_name=Hubot
-        - hubot_owner=Bot Wrangler <bw@example.com>
-        - hubot_description=Delightfully aware robutt
-        - hubot_adapter=matteruser
+        - hubot_name
+        - hubot_owner
+        - hubot_description
+        - hubot_adapter
         - hubot_packages
-        - hubot_port=8080
+        - hubot_port
+        - hubot_user
+        - hubot_home
     ports:
       - "8080:8080"
     environment:

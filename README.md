@@ -1,4 +1,4 @@
-# docker-hubot
+# hubot-docker
 This is a Dockerized version of [Hubot](https://github.com/hubotio/hubot).
 
 ## How to run it

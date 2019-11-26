@@ -4,7 +4,7 @@ LABEL maintainer="5547581+3ch01c@users.noreply.github.com"
 ARG hubot_name="Hubot"
 ARG hubot_owner="Bot Wrangler <bw@example.com>"
 ARG hubot_description="Delightfully aware robutt"
-ARG hubot_adapter="slack"
+ARG hubot_adapter="campfire"
 ARG hubot_packages=""
 ARG hubot_port=8080
 ARG hubot_user="hubot"
@@ -37,10 +37,10 @@ RUN npm i -S $(tr -d '\n' < external-scripts.json | sed -E 's/("|,|\[|\]|\n)/ /g
 # Install other packages
 RUN npm i -S ${hubot_packages}
 
-# Add MFA support to Mattermost adapter
-COPY --chown=100 src/node_modules node_modules
+# Patch vulnerabilities
+RUN npm audit fix
 
 COPY --chown=100 entrypoint.sh .
 
 # Run hubot
-ENTRYPOINT ["sh",  "-c", "./entrypoint.sh"]
+ENTRYPOINT ["sh", "-c", "./entrypoint.sh"]
