@@ -2,26 +2,18 @@ version: "3"
 services:
   hubot:
     image: 3ch01c/hubot
+    container_name: hubot
     build:
       context: .
-      args:
-        - hubot_name=Hubot
-        - hubot_owner=Bot Wrangler <bw@example.com>
-        - hubot_description=Delightfully aware robutt
-        - hubot_adapter=slack
-        - hubot_packages
-        - hubot_port=8080
     ports:
       - "8080:8080"
     environment:
       - REDIS_URL=redis://redis:6379/hubot
-      - HUBOT_SLACK_TOKEN
+      - HUBOT_SLACK_TOKEN=xoxb-YOUR-TOKEN-HERE
     links:
       - redis
   redis:
     image: redis:alpine
     command: redis-server --appendonly yes
     volumes:
-      - data:/data
-volumes:
-  data:
+      - ./data:/data
